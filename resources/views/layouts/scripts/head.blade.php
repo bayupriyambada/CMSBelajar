@@ -1,8 +1,11 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <link href="{{ asset('asset/css/tabler.min.css?1674944402') }}" rel="stylesheet" />
 <link href="{{ asset('asset/css/tabler-flags.min.css?1674944402') }}" rel="stylesheet" />
 <link href="{{ asset('asset/css/tabler-payments.min.css?1674944402') }}" rel="stylesheet" />
 <link href="{{ asset('asset/css/tabler-vendors.min.css?1674944402') }}" rel="stylesheet" />
 <link href="{{ asset('asset/css/demo.min.css?1674944402') }}" rel="stylesheet" />
+
 <style>
     @import url('https://rsms.me/inter/inter.css');
 

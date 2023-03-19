@@ -24,7 +24,8 @@ class User extends Authenticatable
         'name',
         'email',
         'last_login',
-        'roles'
+        'roles',
+        'password'
     ];
 
     /**
@@ -53,5 +54,10 @@ class User extends Authenticatable
         return Attribute::make(
             get: fn () => $this->last_login ? $this->last_login->diffForHumans() :  $this->is_online,
         );
+    }
+
+    public function scopeIsTeacher()
+    {
+        return $this->where('roles', 'teacher')->select('id', 'name', 'email', 'password', 'roles', 'created_at');
     }
 }

@@ -429,75 +429,33 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
-                            data-bs-auto-close="outside" role="button" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle show" href="#navbar-help" data-bs-toggle="dropdown"
+                            data-bs-auto-close="outside" role="button" aria-expanded="true">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
+                                <!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                     stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path
-                                        d="M4 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v1a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                                    <path
-                                        d="M4 13m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                                    <path
-                                        d="M14 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                                    <path
-                                        d="M14 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v1a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                    <path d="M15 15l3.35 3.35"></path>
+                                    <path d="M9 15l-3.35 3.35"></path>
+                                    <path d="M5.65 5.65l3.35 3.35"></path>
+                                    <path d="M18.35 5.65l-3.35 3.35"></path>
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                Layout
+                                Data Pengguna
                             </span>
                         </a>
-                        <div class="dropdown-menu">
-                            <div class="dropdown-menu-columns">
-                                <div class="dropdown-menu-column">
-                                    <a class="dropdown-item" href="./layout-horizontal.html">
-                                        Horizontal
-                                    </a>
-                                    <a class="dropdown-item" href="./layout-boxed.html">
-                                        Boxed
-                                        <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                                    </a>
-                                    <a class="dropdown-item" href="./layout-vertical.html">
-                                        Vertical
-                                    </a>
-                                    <a class="dropdown-item" href="./layout-vertical-transparent.html">
-                                        Vertical transparent
-                                    </a>
-                                    <a class="dropdown-item" href="./layout-vertical-right.html">
-                                        Right vertical
-                                    </a>
-                                    <a class="dropdown-item" href="./layout-condensed.html">
-                                        Condensed
-                                    </a>
-                                    <a class="dropdown-item" href="./layout-combo.html">
-                                        Combined
-                                    </a>
-                                </div>
-                                <div class="dropdown-menu-column">
-                                    <a class="dropdown-item" href="./layout-navbar-dark.html">
-                                        Navbar dark
-                                    </a>
-                                    <a class="dropdown-item" href="./layout-navbar-sticky.html">
-                                        Navbar sticky
-                                    </a>
-                                    <a class="dropdown-item" href="./layout-navbar-overlap.html">
-                                        Navbar overlap
-                                    </a>
-                                    <a class="dropdown-item" href="./layout-rtl.html">
-                                        RTL mode
-                                    </a>
-                                    <a class="dropdown-item" href="./layout-fluid.html">
-                                        Fluid
-                                    </a>
-                                    <a class="dropdown-item" href="./layout-fluid-vertical.html">
-                                        Fluid vertical
-                                    </a>
-                                </div>
-                            </div>
+                        <div class="dropdown-menu show" data-bs-popper="static">
+                            <a class="dropdown-item" href="{{ route('tendik') }}">
+                                Tenaga Pendidik
+                            </a>
+                            <a class="dropdown-item" href="./changelog.html">
+                                Siswa
+                            </a>
                         </div>
                     </li>
                 </ul>

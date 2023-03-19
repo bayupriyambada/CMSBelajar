@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\Pages\App\Dashboard;
+use App\Http\Livewire\Pages\App\Operator\TenagaPendidik;
 use App\Http\Livewire\Pages\LoginComponent;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,5 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth'], function () {
     // halaman dasbor
     Route::get('/', Dashboard::class)->name('dashboard');
+    Route::get('/tenaga-pendidik', TenagaPendidik::class)->name('tendik');
 });

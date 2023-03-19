@@ -7,6 +7,8 @@
 
     <title>@yield('titlePage') - CMS Belajar</title>
     @include('layouts.scripts.head')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
     @livewireStyles
 
 </head>
@@ -23,10 +25,19 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        window.addEventListener('alert', event => {
+            toastr[event.detail.type](event.detail.message,
+                event.detail.title ?? ''), toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+            }
+        });
+    </script>
     @livewireScripts
 
     @include('layouts.scripts.js')
-
 </body>
 
 </html>

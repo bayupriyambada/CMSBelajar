@@ -7,7 +7,7 @@
 
     <title>Laravel</title>
     @include('layouts.scripts.head')
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
     @livewireStyles
 
 </head>
@@ -39,24 +39,14 @@
     <script src="{{ asset('asset/js/tabler.min.js?1674944402') }}" defer></script>
     <script src="{{ asset('asset/js/demo.min.js?1674944402') }}" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
-        @if (session()->has('success'))
-            toastr.success('{{ session('success') }}')
-        @elseif (session()->has('error'))
-            toastr.error('{{ session('error') }}')
-        @endif
-    </script>
-
-    @stack('js')
-
-    <script>
-        window.addEventListener('DOMContentLoaded', function() {
-            const loginUrl = document.querySelector('#login-url');
-            const urlParams = new URLSearchParams(window.location.search);
-            const param = urlParams.get('param');
-            const loginUrlText = document.createTextNode(window.location.href.split('?')[0] + '?param=' + param);
-            loginUrl.appendChild(loginUrlText);
+        window.addEventListener('alert', event => {
+            toastr[event.detail.type](event.detail.message,
+                event.detail.title ?? ''), toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+            }
         });
     </script>
 

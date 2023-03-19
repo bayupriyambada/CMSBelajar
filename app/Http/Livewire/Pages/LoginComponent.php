@@ -35,8 +35,15 @@ class LoginComponent extends Component
             //berhasil login
             loginHelpers::onLogin();
             return redirect(route('dashboard'));
+            $this->dispatchBrowserEvent(
+                'alert',
+                ['type' => 'success',  'message' => "Berhasil login dengan akun anda."]
+            );
         } else {
-            session()->flash('error', 'Alamat Email atau Password Anda salah!.');
+            $this->dispatchBrowserEvent(
+                'alert',
+                ['type' => 'error',  'message' => "Alamat Email atau Password Anda salah!."]
+            );
             return redirect(route('login'));
         }
     }
