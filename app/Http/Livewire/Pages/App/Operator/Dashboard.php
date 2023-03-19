@@ -19,9 +19,10 @@ class Dashboard extends Component
     public function render()
     {
         $userMonitoring = User::where('roles', '!=', RolesEnum::OPERATOR)
-            ->select('name', 'last_login', 'roles')
-            ->orderBy('last_login', 'desc')
-            ->limit(10)
+            ->select('name', 'last_login', 'roles', 'is_online')
+            // ->orderBy('last_login', 'asc')
+            ->orderByRaw('RAND()')
+            ->take(10)
             ->get();
         return view('livewire.pages.app.operator.dashboard', [
             'userMonitoring' => $userMonitoring

@@ -47,10 +47,11 @@ class User extends Authenticatable
         'last_login' => 'datetime',
     ];
 
+
     public function userLastLog(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->last_login ? $this->last_login->diffForHumans() : 'Belum Login',
+            get: fn () => $this->last_login ? $this->last_login->diffForHumans() :  $this->is_online,
         );
     }
 }

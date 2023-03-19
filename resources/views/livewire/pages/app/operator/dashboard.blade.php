@@ -14,7 +14,7 @@
             <div class="text-muted">
                 <ul class="list-inline list-inline-dots mb-0">
                     <li class="list-inline-item"><span class="text-green">Berjalan</span></li>
-                    <li class="list-inline-item">Aktif per 3 menit</li>
+                    <li class="list-inline-item">Aktif Per 3 Menit</li>
                 </ul>
             </div>
         </div>
@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <div class="col-12 mt-4">
+    <div class="col-12 mt-4" wire:poll.180000ms>
         <div class="card">
             <div class="card-table table-responsive">
                 <table class="table">
@@ -46,7 +46,7 @@
                             <th>#</th>
                             <th>Nama</th>
                             <th>Role</th>
-                            <th>Terakhir Login</th>
+                            <th>Riwayat Aktif</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,7 +55,15 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->roles }}</td>
-                                <td>{{ $user->user_last_log }}</td>
+                                <td>
+                                    @if ($user->last_login)
+                                        <span class="text-danger">{{ $user->last_login->diffForHumans() }}</span>
+                                    @elseif ($user->is_online === 1)
+                                        <span class="text-green"><b>Sedang Aktif</b></span>
+                                    @else
+                                        <span class="text-danger">Tidak Aktif</span>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
