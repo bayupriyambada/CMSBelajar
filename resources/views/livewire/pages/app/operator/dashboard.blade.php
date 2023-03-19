@@ -20,7 +20,7 @@
         </div>
         <div class="col-md-auto ms-auto d-print-none">
             <div class="btn-list">
-                <a href="#" class="btn btn-primary">
+                <a href="#" wire:click="monitoring()" class="btn btn-primary">
                     <!-- Download SVG icon from http://tabler-icons.io/i/player-pause -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -43,55 +43,21 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Time period</th>
-                            <th>Availability</th>
-                            <th>Downtime</th>
-                            <th>Incidents</th>
-                            <th>Longest incident</th>
-                            <th>Avg. incident</th>
+                            <th>#</th>
+                            <th>Nama</th>
+                            <th>Role</th>
+                            <th>Terakhir Login</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Today</td>
-                            <td>98.9533%</td>
-                            <td>1 minute</td>
-                            <td>1</td>
-                            <td>1 minute</td>
-                            <td>1 minute</td>
-                        </tr>
-                        <tr>
-                            <td>Last 7 days</td>
-                            <td>98.9533%</td>
-                            <td>1 minute</td>
-                            <td>1</td>
-                            <td>1 minute</td>
-                            <td>1 minute</td>
-                        </tr>
-                        <tr>
-                            <td>Last 30 days</td>
-                            <td>98.9533%</td>
-                            <td>1 minute</td>
-                            <td>1</td>
-                            <td>1 minute</td>
-                            <td>1 minute</td>
-                        </tr>
-                        <tr>
-                            <td>Last 365 days</td>
-                            <td>98.9533%</td>
-                            <td>1 minute</td>
-                            <td>1</td>
-                            <td>1 minute</td>
-                            <td>1 minute</td>
-                        </tr>
-                        <tr>
-                            <td>All time</td>
-                            <td>98.9533%</td>
-                            <td>1 minute</td>
-                            <td>1</td>
-                            <td>1 minute</td>
-                            <td>1 minute</td>
-                        </tr>
+                        @foreach ($userMonitoring as $user)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->roles }}</td>
+                                <td>{{ $user->user_last_log }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

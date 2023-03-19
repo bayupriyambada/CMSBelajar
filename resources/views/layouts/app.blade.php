@@ -11,8 +11,8 @@
 
 </head>
 
-<body class="antialiased">
-
+<body>
+    <script src="{{ asset('asset/js/demo-theme.min.js?1674944402') }}"></script>
     <div class="page">
         <!-- Navbar -->
         @include('layouts.template.header')

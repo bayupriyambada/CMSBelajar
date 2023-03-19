@@ -10,9 +10,6 @@ class LogoutComponent extends Component
 {
     public function logoutHandle()
     {
-        // $user = auth()->user();
-        // $user->last_login = now();
-        // $user->save();
         loginHelpers::lastLogin();
         auth()->logout();
         request()->session()->flush();

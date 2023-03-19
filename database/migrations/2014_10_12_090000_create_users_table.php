@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('roles', ['operator', 'teacher', 'students']);
+            $table->boolean('is_online')->default(false);
             $table->timestamp('last_login')->nullable();
             $table->rememberToken();
             $table->timestamps();

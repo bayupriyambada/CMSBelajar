@@ -11,49 +11,15 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Time period</th>
-                                        <th>Availability</th>
-                                        <th>Downtime</th>
-                                        <th>Incidents</th>
-                                        <th>Longest incident</th>
-                                        <th>Avg. incident</th>
+                                        <th>#</th>
+                                        <th>Nama</th>
+                                        <th>Role</th>
+                                        <th>Terakhir Login</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>Today</td>
-                                        <td>98.9533%</td>
-                                        <td>1 minute</td>
-                                        <td>1</td>
-                                        <td>1 minute</td>
-                                        <td>1 minute</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Last 7 days</td>
-                                        <td>98.9533%</td>
-                                        <td>1 minute</td>
-                                        <td>1</td>
-                                        <td>1 minute</td>
-                                        <td>1 minute</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Last 30 days</td>
-                                        <td>98.9533%</td>
-                                        <td>1 minute</td>
-                                        <td>1</td>
-                                        <td>1 minute</td>
-                                        <td>1 minute</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Last 365 days</td>
-                                        <td>98.9533%</td>
-                                        <td>1 minute</td>
-                                        <td>1</td>
-                                        <td>1 minute</td>
-                                        <td>1 minute</td>
-                                    </tr>
-                                    <tr>
-                                        <td>All time</td>
                                         <td>98.9533%</td>
                                         <td>1 minute</td>
                                         <td>1</td>
