@@ -8,13 +8,11 @@ use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\Hash;
 
-class TenagaPendidik extends Component
+class Siswa extends Component
 {
-    public $queries = 'isTendik';
+    public $queries = 'isKesiswaan';
     public $next;
-    public $tendik;
 
     public $dataId;
     public $name;
@@ -25,16 +23,10 @@ class TenagaPendidik extends Component
     protected $listeners = [
         'resetForms'
     ];
-
-    public $selectedItems = [];
-    public $buttonDeleteSelect = false;
-    public $selectAll = false;
-    public $selectedCount = 0;
-    public $findTendik = '';
-
-    protected $queryString = ['findTendik'];
+    protected $paginationTheme = 'bootstrap';
+    public $find = '';
+    protected $queryString = ['find'];
     use WithPagination;
-
     // alert
     public function successAlert($type, $message = null)
     {
@@ -45,51 +37,7 @@ class TenagaPendidik extends Component
         $this->dispatchBrowserEvent('hideModal');
     }
 
-    public function mount()
-    {
-        $this->next = request()->query($this->queries, null);
-        if (!$this->next) {
-            $this->next = auth()->user()->name  . '/' . Str::random(24);
-            $this->redirect(route('tendik', [$this->queries => $this->next]));
-        }
-        $this->tendik = User::get();
-    }
-
-    public function updatedSelectAll($value)
-    {
-        if ($value) {
-            $this->selectedItems = $this->tendik
-                ->whereNotIn('id', '1')
-                ->operator()->pluck('id')->map(function ($id) {
-                    return (string) $id;
-                });
-        } else {
-            $this->selectedItems = [];
-        }
-        $this->updateSelectedCount();
-    }
-    public function updatedSelectedItems()
-    {
-        $this->buttonDeleteSelect = count($this->selectedItems) > 0;
-        $this->updateSelectedCount();
-    }
-
-    public function updateSelectedCount()
-    {
-        $this->selectedCount = count($this->selectedItems);
-    }
-
-    public function deleteSelected()
-    {
-        User::whereIn('id', $this->selectedItems)->delete();
-        $this->tendik = User::query()->get();
-        $this->selectedItems = [];
-        $this->buttonDeleteSelect = false;
-        $this->selectedCount = 0;
-        $this->successAlert('success', 'Berhasil menghapus akun guru');
-    }
-
-    public function updatingFindTendik()
+    public function updatingFind()
     {
         $this->resetPage();
     }
@@ -98,6 +46,15 @@ class TenagaPendidik extends Component
     {
         $this->name = $this->dataId = null;
         $this->resetErrorBag();
+    }
+
+    public function mount()
+    {
+        $this->next = request()->query($this->queries, null);
+        if (!$this->next) {
+            $this->next = auth()->user()->name  . '/' . Str::random(24);
+            $this->redirect(route('kesiswaan', [$this->queries => $this->next]));
+        }
     }
 
     public function create()
@@ -124,14 +81,16 @@ class TenagaPendidik extends Component
         ], [
             'name.required' => 'Nama lengkap harus diisikan.'
         ]);
+
         $numberEmail = mt_rand(1, 9999);
 
         User::create([
             'name' => $this->name,
             'email' => Str::lower(Str::substr($this->name, 0, 5) . $numberEmail . DataDefault::lastMail),
-            'password' => Hash::make(DataDefault::number),
-            'roles' => RolesEnum::TEACHER
+            'password' => DataDefault::number,
+            'roles' => RolesEnum::STUDENTS
         ]);
+
         $this->successAlert('success', 'Berhasil menambahkan data baru');
         $this->resetForms();
     }
@@ -160,15 +119,15 @@ class TenagaPendidik extends Component
 
     public function confirmAccountDelete()
     {
-        $user = User::findOrFail($this->dataId);
+        $user = User::find($this->dataId);
         $user->delete();
-        $this->successAlert('success', 'Berhasil menghapus akun ' . $user->name);
+        $this->successAlert('success',  'Berhasil menghapus akun ' . $user->name);
     }
     public function render()
     {
-        return view('livewire.pages.app.operator.tenaga-pendidik', [
-            'rolesTeachers' => User::teacher()
-                ->where('name', 'like', '%' . $this->findTendik . '%')
+        return view('livewire.pages.app.operator.siswa', [
+            'rolesStudents' => User::students()
+                ->where('name', 'like', '%' . $this->find . '%')
                 ->orderByDesc('created_at')->paginate($this->paginate)
         ]);
     }

@@ -1,4 +1,5 @@
 <div>
+
     <div class="row g-3 align-items-center">
         <div class="col-auto">
             <span class="status-indicator status-green status-indicator-animated">
@@ -33,6 +34,32 @@
                     </svg>
                     Atur Monitoring
                 </a>
+            </div>
+        </div>
+        <div class="row row-cards">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="subheader">Total Pengguna Aktif</div>
+                        <div class="h3 m-0">{{ $userActive }} pengguna</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="subheader">Total Pengguna Tidak Aktif</div>
+                        <div class="h3 m-0">{{ $userNoActive }} pengguna</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="subheader">Total Keseluruhan</div>
+                        <div class="h3 m-0">{{ $allUser }} pengguna</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

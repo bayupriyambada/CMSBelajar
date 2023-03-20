@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Livewire\Pages\App\Dashboard;
-use App\Http\Livewire\Pages\App\Operator\TenagaPendidik;
+use App\Http\Livewire\Pages\App\Operator\{Siswa, TenagaPendidik};
+use App\Http\Livewire\Pages\App\Teacher\Materi;
+use App\Http\Livewire\Pages\App\Teacher\Section;
 use App\Http\Livewire\Pages\LoginComponent;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
     // halaman dasbor
     Route::get('/', Dashboard::class)->name('dashboard');
     Route::get('/tenaga-pendidik', TenagaPendidik::class)->name('tendik');
+    Route::get('/kesiswaan', Siswa::class)->name('kesiswaan');
+    Route::get('/materi', Materi::class)->name('materi');
+    Route::get('/materi/{slug}/section', Section::class)->name('section');
 });

@@ -9,6 +9,8 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -56,8 +58,33 @@ class User extends Authenticatable
         );
     }
 
-    public function scopeIsTeacher()
+    public function scopeTeacher()
     {
-        return $this->where('roles', 'teacher')->select('id', 'name', 'email', 'password', 'roles', 'created_at');
+        return $this->where('roles', 'teacher');
+    }
+    public function scopeOperator()
+    {
+        return $this->where('roles', 'operator');
+    }
+    public function scopeStudents()
+    {
+        return $this->where('roles', 'students');
+    }
+    public function scopeNotOperator()
+    {
+        return $this->where('roles', '!=', 'operator');
+    }
+    public function scopeOnline()
+    {
+        return $this->where('roles', '!=', 'operator')->where('is_online', 1);
+    }
+    public function scopeOffline()
+    {
+        return $this->where('roles', '!=', 'operator')->where('is_online', 0);
+    }
+
+    public function courses(): HasMany
+    {
+        return $this->hasMany(Courses::class, 'id', 'user_id');
     }
 }

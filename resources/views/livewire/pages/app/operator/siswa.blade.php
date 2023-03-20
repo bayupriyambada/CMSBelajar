@@ -1,18 +1,13 @@
-@section('titlePage', 'Tenaga Pendidik')
+@section('titlePage', 'Kesiswaaan')
 <div>
     <div class="page-body">
         <div class="container-xl">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header gap-1">
+                    <div class="card-header">
                         <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#showModal">
                             Tambah Data
                         </a>
-                        @if ($buttonDeleteSelect)
-                            <a href="#" class="btn btn-danger" wire:click="deleteSelected">
-                                {{ $selectedCount }} Hapus Pilihan
-                            </a>
-                        @endif
                     </div>
                     <div class="card-body border-bottom py-3">
                         <div class="d-flex">
@@ -25,10 +20,9 @@
                                 Data
                             </div>
                             <div class="ms-auto text-muted">
-                                Cari:
+                                Cari Data:
                                 <div class="ms-2 d-inline-block">
-                                    <input type="search" wire:model="findTendik" class="form-control form-control-sm"
-                                        placeholder="Cari data...">
+                                    <input type="search" wire:model="find" class="form-control form-control-sm">
                                 </div>
                             </div>
                         </div>
@@ -37,10 +31,17 @@
                         <table class="table card-table table-vcenter text-nowrap datatable">
                             <thead>
                                 <tr>
-                                    <th class="w-1">
-                                        #
-                                    </th>
+                                    <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
+                                            aria-label="Select all invoices"></th>
                                     <th class="w-1">No.
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-sm icon-thick"
+                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M6 15l6 -6l6 6"></path>
+                                        </svg>
                                     </th>
                                     <th>Nama</th>
                                     <th>Email</th>
@@ -49,16 +50,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($rolesTeachers as $item)
+                                @foreach ($rolesStudents as $item)
                                     <tr>
-                                        {{-- @if ($item->id === 2) --}}
                                         <td><input class="form-check-input m-0 align-middle" type="checkbox"
-                                                wire:model="selectedItems" value="{{ $item->id }}">
-                                        </td>
-                                        {{-- @endif --}}
-                                        <td><span class="text-muted">{{ $loop->iteration }}</span>
-                                        </td>
-                                        <td><a href="#" class="text-reset" tabindex="-1">{{ $item->name }}</a>
+                                                aria-label="Select invoice"></td>
+                                        <td><span class="text-muted">{{ $loop->iteration }}</span></td>
+                                        <td><a href="invoice.html" class="text-reset"
+                                                tabindex="-1">{{ $item->name }}</a>
                                         </td>
                                         <td>
                                             {{ $item->email }}
@@ -68,7 +66,7 @@
                                         </td>
                                         <td>
                                             <div class="btn-list">
-                                                @if ($item->id === 2)
+                                                @if ($item->id === 3)
                                                     <span class="text-danger">Tidak dapat menghapus data ini!</span>
                                                 @else
                                                     <a wire:click="resetPassword({{ json_encode(encrypt($item->id)) }})"
@@ -128,11 +126,14 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="mt-2">
+                            {{ $rolesStudents->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    @include('livewire.pages.app.operator.scripts.tenaga-didik')
+    @include('livewire.pages.app.operator.scripts.kesiswaan')
 </div>
